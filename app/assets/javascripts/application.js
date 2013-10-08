@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require angular.min
+//= require app/main
+//= require_tree .
+//= require_tree ./config
+//= require_tree ./app/controllers
