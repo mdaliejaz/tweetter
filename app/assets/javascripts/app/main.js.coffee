@@ -1,2 +1,2 @@
-# Create 'app' angular application (module)
-@app = angular.module("app", ["ui.compat"])
+# Create 'twitter' angular application (module)
+@twitter = angular.module("twitter", ["ui.compat"])

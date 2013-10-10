@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular.min
-//= require angular-ui-states.min
+//= require angular-ui-states
 //= require app/main
 //= require_tree .
 //= require_tree ./config

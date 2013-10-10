@@ -1,4 +1,4 @@
-app.run ($rootScope, $state, $stateParams) ->
+twitter.run ($rootScope, $state, $stateParams) ->
   # You can turn this off on production.
   $rootScope.$debugMode = "on" # "off"
 

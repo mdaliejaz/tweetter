@@ -8,9 +8,11 @@ Twitter::Application.routes.draw do
   resources :users
   resources :sessions
 
-
   namespace :api do
     resources :tweets
-    end
+  end
 
+  match '/' => 'home#index'
+  match '/tweets' => 'home#index'
+  #match '/tweets/*page' => 'home#index'
 end

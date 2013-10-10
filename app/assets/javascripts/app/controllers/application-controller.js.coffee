@@ -1,1 +1,1 @@
-app.controller "ApplicationController", ($scope) ->
+twitter.controller "ApplicationController", ($scope) ->

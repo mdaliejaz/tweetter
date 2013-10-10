@@ -1,0 +1,10 @@
+<ul>
+  <li ng-repeat="tweet in tweets">
+    User: {{tweet.username}} <br/>
+    Tweet: {{tweet.tweetText}}
+    <a href="/tweets/{{tweet.tweetId}}/edit">Edit</a>
+    <a href="" ng-click="destroy(tweet.tweetId)">Delete</a>
+  </li>
+</ul>
+
+<a href="/tweets/new">Add new tweet</a>

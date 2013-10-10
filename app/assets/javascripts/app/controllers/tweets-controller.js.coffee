@@ -1,79 +1,106 @@
-app.controller "TweetsController", ($scope, $http, $location, $state, $stateParams) ->
+twitter.controller "TweetsController", ($scope, $http, $location, $state, $stateParams, Tweet) ->
 
   # =========================================================================
   # Initialize
   # =========================================================================
 
   $scope.tweets = {}
-  if $state.current.name == 'tweets'
-    $http.get("/api/tweets"
-
-      # success
-    ).then ((response) ->
-      $scope.tweets = response.data
-
-      # failure
-    ), (error) ->
-
   $scope.tweet = {}
-  if $state.current.name == 'edit'
-    $http.get("/api/tweet/#{$stateParams['user_id']}"
 
-      # success
-    ).then ((response) ->
-      $scope.task = response.data
+  # =========================================================================
+  # Show
+  # =========================================================================
 
-      # failure
-    ), (error) ->
+  if $state.current.name == 'tweets'
+    Tweet.query(
+      {}
+
+      # Success
+    , (response) ->
+      $scope.tweets = response
+
+      # Error
+    , (response) ->
+    )
+
+  if $state.current.name == 'show'
+    Tweet.get
+      tweetId: $stateParams['tweetId']
+
+      # Success
+    , (response) ->
+      $scope.tweet = response
+
+      # Error
+    , (response) ->
+
 
   # =========================================================================
   # Create
   # =========================================================================
 
   $scope.create = ->
-    $http.post("/api/tweets",
-      tweet:
-        username: $scope.tweet.username
-        tweet: $scope.tweet.tweet
+    Tweet.save(
+      {}
+    , tweet:
+        tweetText: $scope.tweet.tweetText
+        tweetId: $scope.tweet.tweetId
+#        username: $scope.current_user
 
-      # success
-    ).then ((response) ->
+      #success
+    , (response) ->
       $location.path "/tweets"
 
-      # failure
-    ), (error) ->
+      #Error
+      (response) ->
+    )
 
   # =========================================================================
   # Update
   # =========================================================================
 
-  $scope.update = ->
-    $http.put("/api/tweets/#{$scope.tweet.user_id}",
-      tweet:
-        username: $scope.tweet.username
-        tweet: $scope.tweet.tweet
+  if $state.current.name == 'edit'
+    Tweet.get
+      tweetId: $stateParams['tweetId']
 
-      # success
-    ).then ((response) ->
+      # Success
+    , (response) ->
+      $scope.tweet = response
+
+      # Error
+    , (response) ->
+
+  $scope.update = ->
+    Tweet.update
+      tweetId: $stateParams['tweetId']
+    , tweet:
+      tweetId: $scope.tweet.tweetId
+      tweetText: $scope.tweet.tweetText
+      username: $scope.tweet.username
+
+      # Success
+    , (response) ->
       $location.path "/tweets"
 
-      # failure
-    ), (error) ->
+      # Error
+    , (response) ->
 
   # =========================================================================
   # Destroy
   # =========================================================================
 
-  $scope.destroy = (user_id) ->
-    $http.delete("/api/tweets/#{user_id}"
+  $scope.destroy = (tweetId) ->
+    Tweet.delete
+      tweetId: tweetId
 
-      # success
-    ).then ((response) ->
-      $http.get("/api/tweets").then ((response) ->
-        $scope.tweets = response.data
-      ), (error) ->
+      # Success
+    , (response) ->
+      i = 0
+      while i < $scope.tweets.length
+        if $scope.tweets[i]['tweetId'] is tweetId
+          $scope.tweets.splice(i,1)
+        i++
 
-        # failure
-    ), (error) ->
+      # Error
+    , (response) ->
 
-  return false
