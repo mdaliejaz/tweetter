@@ -1,5 +1,6 @@
 twitter.run ($rootScope, $state, $stateParams) ->
-  # You can turn this off on production.
+
+  # Need to turn this off on production.
   $rootScope.$debugMode = "on" # "off"
 
   # Capture current state and stateParams, this variable can be showed

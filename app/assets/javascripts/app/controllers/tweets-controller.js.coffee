@@ -45,7 +45,7 @@ twitter.controller "TweetsController", ($scope, $http, $location, $state, $state
     , tweet:
         tweetText: $scope.tweet.tweetText
         tweetId: $scope.tweet.tweetId
-#        username: $scope.current_user
+        username: "$scope.current_user"
 
       #success
     , (response) ->
@@ -74,9 +74,9 @@ twitter.controller "TweetsController", ($scope, $http, $location, $state, $state
     Tweet.update
       tweetId: $stateParams['tweetId']
     , tweet:
-      tweetId: $scope.tweet.tweetId
-      tweetText: $scope.tweet.tweetText
-      username: $scope.tweet.username
+#        tweetId: $scope.tweet.tweetId
+        tweetText: $scope.tweet.tweetText
+        username: $scope.tweet.username
 
       # Success
     , (response) ->
@@ -103,4 +103,3 @@ twitter.controller "TweetsController", ($scope, $http, $location, $state, $state
 
       # Error
     , (response) ->
-
