@@ -4,22 +4,22 @@ class Api::TweetsController < Api::BaseController
   end
 
   def show
-    respond_with :api, Tweet.find(params[:tweetId])
+    respond_with :api, Tweet.find(params[:id])
   end
 
   def create
-    respond_with :api, Tweet.create(params[:tweetText])
+    respond_with :api, Tweet.create(params[:tweet])
   end
 
   def edit
-    respond_with :api, Task.find(params[:tweetId])
+    respond_with :api, Tweet.find(params[:id])
   end
 
   def update
-    respond_with :api, Tweet.update(params[:tweetId], params[:tweetText])
+    respond_with :api, Tweet.update(params[:id], params[:tweet])
   end
 
   def destroy
-    respond_with :api, Tweet.destroy(params[:tweetId])
+    respond_with :api, Tweet.destroy(params[:tweet])
   end
 end

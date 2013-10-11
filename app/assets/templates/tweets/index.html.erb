@@ -2,8 +2,8 @@
   <li ng-repeat="tweet in tweets">
     User: {{tweet.username}} <br/>
     Tweet: {{tweet.tweetText}}
-    <a href="/tweets/{{tweet.tweetId}}/edit">Edit</a>
-    <a href="" ng-click="destroy(tweet.tweetId)">Delete</a>
+    <a href="/tweets/{{tweet.id}}/edit">Edit</a>
+    <a href="" ng-click="destroy(tweet.id)">Delete</a>
   </li>
 </ul>
 

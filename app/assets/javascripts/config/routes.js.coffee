@@ -35,7 +35,7 @@ twitter.config ($stateProvider, $urlRouterProvider) ->
 
     .state "edit",
       parent: "tweets"
-      url: "/:tweetId/edit"
+      url: "/:id/edit"
       views:
         "@default":
           controller: "TweetsController"

@@ -1,6 +1,6 @@
 twitter.factory "Tweet", ($resource, apiPrefix) ->
-  $resource( apiPrefix + "/tweets/:tweetId",
-    tweetId: "@tweetId"
+  $resource( apiPrefix + "/tweets/:id",
+    id: "@id"
   ,
     update:
       method: "PUT"

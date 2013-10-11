@@ -25,7 +25,7 @@ twitter.controller "TweetsController", ($scope, $http, $location, $state, $state
 
   if $state.current.name == 'show'
     Tweet.get
-      tweetId: $stateParams['tweetId']
+      id: $stateParams['id']
 
       # Success
     , (response) ->
@@ -44,8 +44,7 @@ twitter.controller "TweetsController", ($scope, $http, $location, $state, $state
       {}
     , tweet:
         tweetText: $scope.tweet.tweetText
-        tweetId: $scope.tweet.tweetId
-        username: "$scope.current_user"
+        username: $scope.tweet.username
 
       #success
     , (response) ->
@@ -61,7 +60,7 @@ twitter.controller "TweetsController", ($scope, $http, $location, $state, $state
 
   if $state.current.name == 'edit'
     Tweet.get
-      tweetId: $stateParams['tweetId']
+      id: $stateParams['id']
 
       # Success
     , (response) ->
@@ -72,9 +71,8 @@ twitter.controller "TweetsController", ($scope, $http, $location, $state, $state
 
   $scope.update = ->
     Tweet.update
-      tweetId: $stateParams['tweetId']
+      id: $stateParams['id']
     , tweet:
-#        tweetId: $scope.tweet.tweetId
         tweetText: $scope.tweet.tweetText
         username: $scope.tweet.username
 
@@ -89,15 +87,15 @@ twitter.controller "TweetsController", ($scope, $http, $location, $state, $state
   # Destroy
   # =========================================================================
 
-  $scope.destroy = (tweetId) ->
+  $scope.destroy = (id) ->
     Tweet.delete
-      tweetId: tweetId
+      id: id
 
       # Success
     , (response) ->
       i = 0
       while i < $scope.tweets.length
-        if $scope.tweets[i]['tweetId'] is tweetId
+        if $scope.tweets[i]['id'] is id
           $scope.tweets.splice(i,1)
         i++
 
