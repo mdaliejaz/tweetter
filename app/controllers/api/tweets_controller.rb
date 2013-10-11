@@ -20,6 +20,6 @@ class Api::TweetsController < Api::BaseController
   end
 
   def destroy
-    respond_with :api, Tweet.destroy(params[:tweet])
+    respond_with :api, Tweet.destroy(params[:id])
   end
 end
